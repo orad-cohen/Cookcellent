@@ -9,8 +9,9 @@ from pymongo import MongoClient
 import pprint
 import requests
 import json
+from configuration import config
 
-conn_str = "mongodb+srv://Admin:admin@cluster0.pgnj0.mongodb.net/Cookcellent?retryWrites=true&w=majority"
+conn_str = config.connection_string
 client = MongoClient(conn_str, serverSelectionTimeoutMS=5000)
 database = client['Cookcellent']
 IngridientsCollection = database['ingredient']
