@@ -3,7 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/drawable/header.xml" value="0.351" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/drawable/ic_untitled_1.xml" value="0.1985" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/activity_main.xml" value="0.1621376811594203" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/activity_mainx.xml" value="0.16822916666666668" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/adapt.xml" value="0.340625" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/sda.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/search_recipe.xml" value="0.2" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/toolbar.xml" value="0.16822916666666668" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/viewholder.xml" value="0.3416666666666667" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/what.xml" value="0.340625" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/xml/searchable.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -1,5 +1,6 @@
 package com.project.cookcellent;
 
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -38,18 +39,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pagenameTextView = findViewById(R.id.pagename);
 
-        try{
-            String res = new RetrieveJson().execute("d").get();
-
-            //String recipename=
-            System.out.println(res.toString());
-        }
-        catch (Exception e){
-            System.out.println(e.toString());
-        }
-        // creating a client
+        Intent searcha = new Intent(this,SearchActivity.class);
+        startActivity(searcha);
 
 
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TitleBarImage" parent="ThemeOverlay.AppCompat.ActionBar">
+
+        <item name="android:src">@drawable/ic_untitled_1</item>
+    </style>
+</resources>

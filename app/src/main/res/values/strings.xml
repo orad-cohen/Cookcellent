@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Cookcellent</string>
+    <string name="app_label">Cook</string>
+    <string name="search_hint">Search</string>
 </resources>
