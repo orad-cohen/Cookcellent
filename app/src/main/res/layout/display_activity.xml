@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/lightblue"
-
     >
-
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="wrap_content"
         android:layout_height="72dp"
@@ -33,64 +32,34 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <Button
-            android:id="@+id/searchHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Search History" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button" />
-    </LinearLayout>
-
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_window"
-        android:layout_width="match_parent"
-
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-
-
-        >
-
-        <requestFocus />
-
-    </androidx.appcompat.widget.SearchView>
-
-    <Button
-        android:layout_gravity="center"
-        android:id="@+id/searchB"
+    <ImageView
+        android:id="@+id/displayFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:layout_gravity="center"
+        tools:srcCompat="@tools:sample/avatars" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
+        android:id="@+id/displayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/display"/>
+        android:id="@+id/displayIngredients"
+>
+    </ScrollView>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rec"
-
+        android:id="@+id/displayDirection"
         >
 
-    </androidx.recyclerview.widget.RecyclerView>
-
-
-
-
-</LinearLayout>
+    </ScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

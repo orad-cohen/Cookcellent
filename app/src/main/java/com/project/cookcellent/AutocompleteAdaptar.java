@@ -11,9 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public class AutocompleteAdaptar extends RecyclerView.Adapter<AutocompleteAdaptar.ViewHolder> {
+    public interface OnItemClickListener {
+        void onItemClick(String item);
+    }
 
     private ArrayList<String> localDataSet;
+    private OnItemClickListener listener;
     private List<String> toList = new ArrayList<>();
     /**
      * Provide a reference to the type of views that you are using
@@ -24,13 +28,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
-
             textView = (TextView) view.findViewById(R.id.textView);
         }
 
         public TextView getTextView() {
             return textView;
+        }
+        public void bind(final String item, final OnItemClickListener listener) {
+            textView.setText(item);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 
@@ -40,7 +50,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public CustomAdapter(ArrayList<String> dataSet) {
+    public AutocompleteAdaptar(ArrayList<String> dataSet, OnItemClickListener listen) {
+        this.listener = listen;
         localDataSet = dataSet;
     }
 
@@ -54,13 +65,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
+
+
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+
         viewHolder.getTextView().setText(toList.get(position));
+        viewHolder.bind(toList.get(position),listener);
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -68,11 +84,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public int getItemCount() {
         return toList.size();
     }
+
+
     public void filter(String text){
         text = text.toLowerCase();
         toList.clear();
         if (text.length() == 0) {
-            toList.addAll(localDataSet);
+            toList.clear();
         } else {
             for (String wp : localDataSet) {
                 if (wp.toLowerCase(Locale.getDefault()).contains(text)) {
@@ -80,6 +98,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 }
             }
         }
+
         notifyDataSetChanged();
     }
+
 }

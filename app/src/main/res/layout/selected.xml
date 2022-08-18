@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@drawable/border"
+    android:orientation="horizontal"
+    android:weightSum="10"
+
+    >
+
+
+    <TextView
+        android:paddingLeft="5dp"
+        android:textColor="@color/black"
+        android:layout_weight="10"
+        android:id="@+id/ing"
+
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <Button
+        android:clickable="true"
+
+        android:textColor="@color/teal_700"
+        android:id="@+id/remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/remove_button" />
+</androidx.appcompat.widget.LinearLayoutCompat>

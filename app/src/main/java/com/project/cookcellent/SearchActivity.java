@@ -1,8 +1,14 @@
 package com.project.cookcellent;
 
 
-import android.os.Bundle;
+import static android.view.View.VISIBLE;
 
+import android.content.Intent;
+import android.os.Bundle;
+import java.util.Calendar;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,51 +17,89 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class SearchActivity  extends AppCompatActivity implements SearchView.OnQueryTextListener{
     SearchView bar;
-    RecyclerView list;
+    RecyclerView autoComplete;
     RecyclerView.LayoutManager  man;
-    CustomAdapter adapt;
-    ArrayList<String> animals= new ArrayList<String>();;
-
+    RecyclerView ingredients;
+    RecyclerView.LayoutManager  ingredientsManger;
+    IngredientAdapter ingAdapter;
+    AutocompleteAdaptar autoAdapter;
+    ArrayList<String> listdata;
+    ProgressBar load;
+    ExecutorService threads;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_recipe);
-        Toast.makeText(this, "waosstt", Toast.LENGTH_LONG).show();
         bar = findViewById(R.id.search_window);
         bar.setOnQueryTextListener(this);
-        bar.setIconifiedByDefault(false);
 
-        String[] animalNameList = new String[]{"Lion", "Tiger", "Dog",
-                "Cat", "Tortoise", "Rat", "Elephant", "Fox",
-                "Cow","Donkey","Monkey"};
-        toList(animalNameList);
-        // Locate the ListView in listview_main.xml
-        ArrayList<String> listdata = new ArrayList<String>();
-        try{
-            String res = new RetrieveIngredients().execute("stop").get();
-            JSONObject jsnobject = new JSONObject(res);
-            JSONArray jsonArray = jsnobject.getJSONArray("Ingredients");
-            for (int i=0;i<jsonArray.length();i++){
+        autoComplete = findViewById(R.id.display);
+        Button search = findViewById(R.id.searchB);
 
-                //Adding each element of JSON array into ArrayList
-                listdata.add((String) jsonArray.get(i));
-            }
+        threads = Executors.newFixedThreadPool(4);
+        threads.execute(()->listdata = networkTools.getIngredients());
+        AtomicReference<ArrayList<String>> selectedList = new AtomicReference<>(new ArrayList<String>());
+        threads.execute(()-> selectedList.set((ArrayList<String>) tools.getCache("search", this)));
+
+
+        tools.awaitTerm(threads);
+        if(selectedList.get()==null){
+            selectedList.set(new ArrayList<>());
         }
-        catch(Exception e){
-
-        }
-
-
-        list = findViewById(R.id.rec);
-        adapt = new CustomAdapter(listdata);
-        list.setAdapter(adapt);
+        autoAdapter = new AutocompleteAdaptar(listdata, item -> {
+            bar.setQuery("",false);
+            ingAdapter.add(item);
+        });
+        autoComplete.setAdapter(autoAdapter);
         man = new LinearLayoutManager(this);
-        list.setLayoutManager(man);
+        autoComplete.setLayoutManager(man);
+
+
+        ingredients = findViewById(R.id.rec);
+
+        ingAdapter = new IngredientAdapter(selectedList.get(), item -> ingAdapter.remove(item));
+
+        ingredients.setAdapter(ingAdapter);
+        ingredientsManger = new LinearLayoutManager(this);
+        ingredients.setLayoutManager(ingredientsManger);
+        findViewById(R.id.searchHistory).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchActivity.this,DisplayHistory.class);
+                SearchActivity.this.startActivity(intent);
+
+            }
+        });
+
+        search.setOnClickListener(v -> {
+
+
+            ArrayList < String > selections = (ArrayList<String>) ingAdapter.getSelection();
+            tools.saveCache("search",this,selections);
+            AtomicReference<ArrayList<recipeClass>> recipes = new AtomicReference<>(new ArrayList<>());
+            ExecutorService re = Executors.newFixedThreadPool(2);
+            re.execute(()-> recipes.set(networkTools.getRecipes(selections)));
+
+            tools.awaitTerm(re);
+            ArrayList<ArrayList<String>> previousSearches =(ArrayList<ArrayList<String>> ) tools.getCache("searchHistory",this);
+            if(previousSearches==null){
+                previousSearches = new ArrayList<>();
+            }
+            previousSearches.add(selectedList.get());
+            previousSearches.get(previousSearches.size()-1).add(Calendar.getInstance().getTime().toString());
+            tools.saveCache("searchHistory",this,previousSearches);
+            Intent recipeScreen = new Intent(SearchActivity.this,RecipesScreen.class);
+            recipeScreen.putExtra("recipes",recipes.get());
+
+            SearchActivity.this.startActivity(recipeScreen);
+        });
+
 
     }
 
@@ -63,27 +107,20 @@ public class SearchActivity  extends AppCompatActivity implements SearchView.OnQ
     @Override
     public boolean onQueryTextSubmit(String query) {
         bar.setQuery("",false);
-        System.out.println(query);
+        ingAdapter.add(query);
 
-        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
+
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        adapt.filter(newText);
+        Toast.makeText(this, "whats", Toast.LENGTH_SHORT).show();
+        autoAdapter.filter(newText);
         return false;
     }
-    public void toList(String[] array) {
-        if (array==null) {
-            return;
-        } else {
-            int size = array.length;
 
-            for(int i = 0; i < size; i++) {
-                animals.add(array[i]);
-            }
 
-        }
-    }
+
+
 }

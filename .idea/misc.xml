@@ -3,13 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2515" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/drawable/border.xml" value="0.1165" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/drawable/header.xml" value="0.351" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2515" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/drawable/ic_untitled_1.xml" value="0.1985" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/activity_main.xml" value="0.1621376811594203" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/activity_mainx.xml" value="0.16822916666666668" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/activity_recipes_screen.xml" value="0.234375" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/activity_signup.xml" value="0.5" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/adapt.xml" value="0.340625" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/display_activity.xml" value="0.20104166666666667" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/login_screen.xml" value="0.33" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/recipebar.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/recipelist.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/sda.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/search_recipe.xml" value="0.2" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/searchhistorybar.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/searchistory.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/selected.xml" value="0.264" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/toolbar.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/viewholder.xml" value="0.3416666666666667" />
         <entry key="..\:/Users/orad3/AndroidStudioProjects/Cookcellent/app/src/main/res/layout/what.xml" value="0.340625" />

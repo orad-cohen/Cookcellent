@@ -2,16 +2,14 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-    >
+    android:background="@color/lightblue">
 
     <TextView
-
-        android:textColor="@color/blue"
-        android:id="@+id/textView"
-        android:textStyle="bold"
-        android:textSize="17dp"
+        android:id="@+id/searchhistorybar"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/search_hint" />
+        android:textSize="20dp"
+        android:text="TextView"
+        android:background="@drawable/border"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
