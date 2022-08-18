@@ -18,14 +18,18 @@ def sayHello():
     name = request.args.get('name')
     return "Hello "+name
 
-@app.route("/hey", methods=['GET', 'POST'])
-def add_message():
-    data = json.loads(request.get_data())
-    mada = request.get_json()
-    print(data)
-    print(mada)
-    rd = "{\"Recipe\":\"Cheese cake\", \"Ingredients\": [\"cream cheese\", \"Milk\",\"sugar\"]}"
-    return rd
+@app.route("/search",methods=['GET','POST'])
+def search_recipe():
+    data = json.loads(request.get_data().decode('utf-8'))
+
+    recipeIndex = funcs.reCombineAndFind(Ingredient=data['Ingredients'])
+
+    result = []
+
+    for index in recipeIndex:
+        result.extend(funcs.getRecipe(index))
+    print(result)
+    return json.dumps(list(result))
 
 @app.route("/rawIngredients",methods=['GET','POST'])
 def get_Ingredients():
